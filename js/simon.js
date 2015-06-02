@@ -47,14 +47,12 @@ var SimonSays = (function ($) {
         var randNum = getRandNum(),
             chosenNum = 0;
 
-        for(var i = 0; i <= chosen.length; i++){
+        for(var i = 0; i < chosen.length; i++){
             setTimeout(function() {
-                var index = i;
-
-                if (i > chosen.length) {
-                    chosenNum = chosen[index];
+                if (i < chosen.length) {
+                    chosenNum = chosen[i];
                     displayColor(chosenNum, false);
-                    console.log(chosen, index);
+                    console.log(chosen, i);
                 } else if (i === chosen.length) {
                     displayColor(randNum, true);
                     listenForFeedback();
