@@ -6,7 +6,7 @@ var SimonSays = (function ($) {
         'blue'
     ];
 
-    var chosen = [],
+    var chosenColors = [],
         numOfClicks = 0;
 
     function init() {
@@ -17,7 +17,7 @@ var SimonSays = (function ($) {
 
     function startGame() {
         var randNum = getRandNum();
-            chosen = [];
+            chosenColors = [];
             numOfClicks = 0;
 
         displayColor(randNum, true);
@@ -27,13 +27,13 @@ var SimonSays = (function ($) {
 
     function listenForFeedback() {
         $('.board-boundry > div').on('click', function () {
-            if ($(this).index() === chosen[numOfClicks]) {
+            if ($(this).index() === chosenColors[numOfClicks]) {
                 numOfClicks++;
 
-                if (numOfClicks === chosen.length) {
+                if (numOfClicks === chosenColors.length) {
                     $('.board-boundry > div').off('click');
                     numOfClicks = 0;
-                    addNewColor();
+                    setTimeout(playbackColors, 1000);
                 }
             } else {
                 console.log('WRONG');
@@ -43,23 +43,34 @@ var SimonSays = (function ($) {
         });
     }
 
-    function addNewColor() {
-        var randNum = getRandNum(),
-            chosenNum = 0;
+    function playbackColors() {
+        var chosenNum = 0;
 
-        for(var i = 0; i < chosen.length; i++){
-            setTimeout(function() {
-                if (i < chosen.length) {
-                    chosenNum = chosen[i];
-                    displayColor(chosenNum, false);
-                    console.log(chosen, i);
-                } else if (i === chosen.length) {
-                    displayColor(randNum, true);
-                    listenForFeedback();
-                }
-            }, 1000 * i);
+        for(var i = 0; i <= chosenColors.length; i++){
+            setTimeout(colorIndexToDisplay(i), i * 500);
         }
     }
+
+    function colorIndexToDisplay(index) {
+        return function() {
+            console.log(chosenColors, index);
+            if (index < chosenColors.length) {
+                chosenNum = chosenColors[index];
+                displayColor(chosenNum, false);
+            } else if (index === chosenColors.length) {
+                chooseNewColor();
+                listenForFeedback();
+            }
+        }
+    }
+
+    function chooseNewColor() {
+        var randNum = getRandNum();
+
+        displayColor(randNum, true);
+    }
+
+
 
     function displayColor(colorIndex, addColor) {
         var colorClass = '.' + COLORS[colorIndex];
@@ -71,7 +82,7 @@ var SimonSays = (function ($) {
         }, 200);
 
         if (addColor) {
-            chosen.push(colorIndex);
+            chosenColors.push(colorIndex);
         }
     }
 
