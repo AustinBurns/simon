@@ -16,12 +16,11 @@ h1 {
 }
 
 .board-boundry {
-    width: 500px;
-    height: 500px;
+    width: 505px;
+    height: 505px;
     position: absolute;
     margin: 0 auto;
-    border: 1px solid black;
-    background-color: grey;
+    border: 5px solid black;
     border-radius: 50%;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
@@ -32,10 +31,31 @@ h1 {
     -o-box-shadow: -1px 1px 3px #000;
 }
 
+.board-boundry:before {
+    content:"";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 49.5%;
+    border-left: 5px solid #000;
+}
+
+.board-boundry:after {
+    content:"";
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 49.5%;
+    left: 0;
+    border-bottom: 5px solid #000;
+}
+
 .green {
 	width: 250px;
 	height: 250px;
-    background-color: #008000;
+    background-color: #28A428;
     float: left;
     border-radius: 500px 0px 0px 0px;
 }
@@ -43,24 +63,26 @@ h1 {
 .green.chosen, .green:hover {
     position: relative;
     z-index: 1;
-    box-shadow: -5px -2px 39px #008000;
-    -moz-box-shadow: -5px -2px 39px #008000;
-    -webkit-box-shadow: -5px -2px 39px #008000;
-    -o-box-shadow: -5px -2px 39px #008000;
+    background-color: #00ff00;
+    box-shadow: -5px -2px 39px #00ff00;
+    -moz-box-shadow: -5px -2px 39px #00ff00;
+    -webkit-box-shadow: -5px -2px 39px #00ff00;
+    -o-box-shadow: -5px -2px 39px #00ff00;
 
 }
 
 .red {
 	width: 250px;
 	height: 250px;
-    background: #FF0000;
-    float: left;
+    background-color: #CC0000;
+    float: right;
     border-radius: 0px 500px 0px 0px;
 }
 
 .red.chosen, .red:hover {
     position: relative;
     z-index: 1;
+    background-color: FF0000;
     box-shadow: 0px 1px 44px #FF0000;
     -moz-box-shadow: 0px 1px 44px #FF0000;
     -webkit-box-shadow: 0px 1px 44px #FF0000;
@@ -70,7 +92,7 @@ h1 {
 .yellow {
 	width: 250px;
 	height: 250px;
-    background: #FFFF00;
+    background-color: #CCCC00;
     float: left;
     border-radius: 0px 0px 0px 500px;
 }
@@ -78,6 +100,7 @@ h1 {
 .yellow.chosen, .yellow:hover {
     position: relative;
     z-index: 1;
+    background-color: #FFFF00;
     box-shadow: -5px 0px 39px #FFFF00;
     -moz-box-shadow: -5px 0px 39px #FFFF00;
     -webkit-box-shadow: -5px 0px 39px #FFFF00;
@@ -87,16 +110,25 @@ h1 {
 .blue {
 	width: 250px;
 	height: 250px;
-    background: #0000FF;
-    float: left;
+    background-color: #000080;
+    float: right;
     border-radius: 0px 0px 500px 0px;
 }
 
 .blue.chosen, .blue:hover {
     position: relative;
     z-index: 1;
-    box-shadow: 0px 5px 39px #0000FF;
-    -moz-box-shadow: 0px 5px 39px #0000FF;
-    -webkit-box-shadow: 0px 5px 39px #0000FF;
-    -o-box-shadow: 0px 5px 39px #0000FF;
+    background-color: #1E90FF;
+    box-shadow: 0px 5px 39px #1E90FF;
+    -moz-box-shadow: 0px 5px 39px #1E90FF;
+    -webkit-box-shadow: 0px 5px 39px #1E90FF;
+    -o-box-shadow: 0px 5px 39px #1E90FF;
+}
+
+.yellow, .blue {
+    margin-top: 5px;
+}
+
+.clear {
+    clear: both;
 }
